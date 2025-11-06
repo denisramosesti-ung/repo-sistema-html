@@ -1,70 +1,148 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hospital San Martín</title>
-  <link rel="icon" href="assets/img/favicon.png">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar Turnos - Hospital San Martín</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .day {
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: 600;
+    }
+    .available { background-color: #16a34a; }  /* verde */
+    .unavailable { background-color: #dc2626; } /* rojo */
+    .day:hover { opacity: 0.8; }
+    .hours {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hour {
+      padding: 8px 14px;
+      background: #0a4d8c;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .hour:hover {
+      background: #08325e;
+    }
+    .msg-ok {
+      margin-top: 15px;
+      color: #16a34a;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-<header class="topbar">
-  <nav class="container nav">
-    <a class="brand" href="index.html">
-      <img src="assets/img/logo.png" alt="Logo Hospital" height="32"> Hospital San Martín
-    </a>
-    <button class="nav-toggle" aria-controls="menu" aria-expanded="false">☰</button>
-    <ul id="menu" class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
-      <li><a href="turnos.html">Calendario/Turnos</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="docs/protocolo-guardia.pdf" download>Descargar PDF</a></li>
-    </ul>
-  </nav>
+<header id="header">
+  <div class="container">
+    <h1>Hospital San Martín</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="turnos.html">Turnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
-  
-<h1>Calendario de Turnos</h1>
-<div class="calendar-controls">
-  <button id="prev">←</button>
-  <h2 id="monthLabel"></h2>
-  <button id="next">→</button>
-</div>
-<div id="calendar" class="calendar"></div>
+<section id="turnos" class="section bg-light" style="padding-top:100px;">
+  <div class="container">
+    <h2>Reserva de Turnos</h2>
+    <p>Seleccioná un día disponible (🟩) y luego un horario.</p>
 
-<section aria-labelledby="reserva">
-  <h2 id="reserva">Reservar turno</h2>
-  <form id="formTurno" class="form">
-    <label>Fecha seleccionada
-      <input id="fecha" name="fecha" type="text" readonly required>
-    </label>
-    <label>Nombre y apellido
-      <input id="nombre" name="nombre" type="text" required>
-    </label>
-    <label>Especialidad
-      <select id="especialidad" name="especialidad" required>
-        <option value="">Elegí una</option>
-        <option>Clínica Médica</option>
-        <option>Pediatría</option>
-        <option>Cardiología</option>
-      </select>
-    </label>
-    <button type="submit" class="btn">Confirmar</button>
-  </form>
-  <p id="msg" role="status" class="ok" hidden>¡Turno reservado localmente!</p>
+    <div class="calendar" id="calendar"></div>
+
+    <div id="hoursContainer" class="hours" hidden></div>
+    <p id="msgTurno" class="msg-ok" hidden>✅ Turno reservado correctamente</p>
+  </div>
 </section>
 
-</main>
+<script>
+const diasDisponibles = {
+  "2025-11-07": ["08:00", "09:00", "10:00"],
+  "2025-11-08": ["09:00", "10:30", "11:30", "13:00"],
+  "2025-11-10": ["08:30", "09:30", "11:00"],
+  "2025-11-12": ["09:00", "10:30"],
+};
 
-<footer class="footer">
-  <div class="container">
-    <small>© 2025 Hospital San Martín — <a href="docs/consentimiento-menor.pdf" download>Consentimiento (PDF)</a></small>
-  </div>
-</footer>
+function generarCalendario() {
+  const calendar = document.getElementById("calendar");
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
 
-<script src="assets/js/main.js"></script>
-<script src="assets/js/calendar.js"></script>
+  const startDay = firstDay.getDay() === 0 ? 7 : firstDay.getDay(); // Lunes=1
+  const totalDays = lastDay.getDate();
+
+  calendar.innerHTML = "";
+
+  for (let i = 1; i < startDay; i++) {
+    const empty = document.createElement("div");
+    calendar.appendChild(empty);
+  }
+
+  for (let d = 1; d <= totalDays; d++) {
+    const date = new Date(year, month, d);
+    const ymd = date.toISOString().split("T")[0];
+    const dayDiv = document.createElement("div");
+    dayDiv.textContent = d;
+
+    if (diasDisponibles[ymd]) {
+      dayDiv.className = "day available";
+      dayDiv.title = "Día disponible";
+      dayDiv.onclick = () => mostrarHorarios(ymd);
+    } else {
+      dayDiv.className = "day unavailable";
+      dayDiv.title = "Sin disponibilidad";
+    }
+
+    calendar.appendChild(dayDiv);
+  }
+}
+
+function mostrarHorarios(fecha) {
+  const container = document.getElementById("hoursContainer");
+  const msg = document.getElementById("msgTurno");
+  msg.hidden = true;
+
+  container.innerHTML = "";
+  container.hidden = false;
+
+  diasDisponibles[fecha].forEach(hora => {
+    const btn = document.createElement("div");
+    btn.className = "hour";
+    btn.textContent = hora;
+    btn.onclick = () => reservarTurno(fecha, hora);
+    container.appendChild(btn);
+  });
+}
+
+function reservarTurno(fecha, hora) {
+  const msg = document.getElementById("msgTurno");
+  msg.textContent = `✅ Turno reservado correctamente el ${fecha} a las ${hora}.`;
+  msg.hidden = false;
+}
+
+generarCalendario();
+</script>
+
 </body>
 </html>
