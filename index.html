@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -43,7 +42,7 @@
   <div class="container">
     <h2>Nuestros Servicios</h2>
     <div class="cards">
-      <div class="card"><img src="assets/img/serv1.svg" alt="Emergencias"><h3>Emergencias 24h</h3><p>Atención inmediata en guardias equipadas.</p></div>
+      <div class="card"><img src="assets/img/serv1.svg" alt="Emergencias"><h3>Emergencias 24 h</h3><p>Atención inmediata en guardias equipadas.</p></div>
       <div class="card"><img src="assets/img/serv2.svg" alt="Consultas"><h3>Consultas Médicas</h3><p>Atención en múltiples especialidades médicas.</p></div>
       <div class="card"><img src="assets/img/serv3.svg" alt="Laboratorio"><h3>Laboratorio</h3><p>Análisis clínicos y diagnósticos precisos.</p></div>
       <div class="card"><img src="assets/img/serv4.svg" alt="Imagenología"><h3>Imagenología</h3><p>Ecografías, radiografías y tomografías.</p></div>
@@ -66,35 +65,29 @@
   <div class="container">
     <h2>Reserva de Turnos</h2>
     <iframe src="https://calendar.google.com/calendar/embed?src=es.py%23holiday%40group.v.calendar.google.com&ctz=America%2FAsuncion" style="border:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-   <form id="formTurno" class="form" onsubmit="return reservarTurno(event)">
-  <label>Nombre <input type="text" name="nombre" required></label>
-  <label>Email <input type="email" name="email" required></label>
-  <label>Especialidad 
-    <select name="especialidad" required>
-      <option>Clínica Médica</option>
-      <option>Cardiología</option>
-      <option>Pediatría</option>
-    </select>
-  </label>
-  <label>Fecha <input type="date" name="fecha" required></label>
-  <button type="submit" class="btn">Solicitar turno</button>
-</form>
-<p id="msgTurno" class="msg-ok" hidden>✅ Turno reservado correctamente</p>
 
-<script>
-function reservarTurno(e){
-  e.preventDefault();
-  document.getElementById('msgTurno').hidden = false;
-  return false;
-}
-</script>
+    <!-- FORMULARIO SIMULADO -->
+    <form id="formTurno" class="form">
+      <label>Nombre <input type="text" id="nombre" required></label>
+      <label>Email <input type="email" id="email" required></label>
+      <label>Especialidad 
+        <select id="especialidad" required>
+          <option>Clínica Médica</option>
+          <option>Cardiología</option>
+          <option>Pediatría</option>
+        </select>
+      </label>
+      <label>Fecha <input type="date" id="fecha" required></label>
+      <button type="submit" class="btn">Solicitar turno</button>
+    </form>
+    <p id="msgTurno" class="msg-ok" hidden>✅ Turno reservado correctamente</p>
   </div>
 </section>
 
 <section id="contacto" class="section">
   <div class="container">
     <h2>Contacto</h2>
-    <p>📍 Av. San Martín 123, Asunción - Paraguay</p>
+    <p>📍 Av. San Martín 123, Asunción – Paraguay</p>
     <p>📧 info@hospitalsm.com | ☎️ (021) 555-789</p>
     <iframe src="https://www.google.com/maps?q=asuncion+paraguay&output=embed" width="100%" height="300" style="border:0;"></iframe>
   </div>
@@ -107,5 +100,11 @@ function reservarTurno(e){
 </footer>
 
 <script src="assets/js/script.js"></script>
+<script>
+document.getElementById("formTurno").addEventListener("submit", function(e){
+  e.preventDefault();
+  document.getElementById("msgTurno").hidden = false;
+});
+</script>
 </body>
 </html>
