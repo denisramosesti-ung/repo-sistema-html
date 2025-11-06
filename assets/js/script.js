@@ -1,1 +1,2 @@
 window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>10)});
+function reservarTurno(e){e.preventDefault();document.getElementById('msgTurno').hidden=false;return false;}

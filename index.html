@@ -66,7 +66,7 @@
   <div class="container">
     <h2>Reserva de Turnos</h2>
     <iframe src="https://calendar.google.com/calendar/embed?src=es.py%23holiday%40group.v.calendar.google.com&ctz=America%2FAsuncion" style="border:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
-    <form class="form" action="mailto:info@hospitalsm.com" method="post" enctype="text/plain">
+    <form class="form" onsubmit="return reservarTurno(event)" method="post" enctype="text/plain">
       <label>Nombre <input type="text" name="nombre" required></label>
       <label>Email <input type="email" name="email" required></label>
       <label>Especialidad <select name="especialidad"><option>Clínica Médica</option><option>Cardiología</option><option>Pediatría</option></select></label>
