@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital San Martín</title>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <nav class="container nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo.png" alt="Logo Hospital" height="32"> Hospital San Martín
+    </a>
+    <button class="nav-toggle" aria-controls="menu" aria-expanded="false">☰</button>
+    <ul id="menu" class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="turnos.html">Calendario/Turnos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="docs/protocolo-guardia.pdf" download>Descargar PDF</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  
+<h1>Contacto</h1>
+<form class="form" action="mailto:recepcion@hospitalsm.com" method="post" enctype="text/plain">
+  <label>Nombre <input name="nombre" required></label>
+  <label>Email <input type="email" name="email" required></label>
+  <label>Mensaje <input name="mensaje" required></label>
+  <button class="btn" type="submit">Enviar</button>
+</form>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <small>© 2025 Hospital San Martín — <a href="docs/consentimiento-menor.pdf" download>Consentimiento (PDF)</a></small>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

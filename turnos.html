@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital San Martín</title>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <nav class="container nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo.png" alt="Logo Hospital" height="32"> Hospital San Martín
+    </a>
+    <button class="nav-toggle" aria-controls="menu" aria-expanded="false">☰</button>
+    <ul id="menu" class="menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="turnos.html">Calendario/Turnos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="docs/protocolo-guardia.pdf" download>Descargar PDF</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  
+<h1>Calendario de Turnos</h1>
+<div class="calendar-controls">
+  <button id="prev">←</button>
+  <h2 id="monthLabel"></h2>
+  <button id="next">→</button>
+</div>
+<div id="calendar" class="calendar"></div>
+
+<section aria-labelledby="reserva">
+  <h2 id="reserva">Reservar turno</h2>
+  <form id="formTurno" class="form">
+    <label>Fecha seleccionada
+      <input id="fecha" name="fecha" type="text" readonly required>
+    </label>
+    <label>Nombre y apellido
+      <input id="nombre" name="nombre" type="text" required>
+    </label>
+    <label>Especialidad
+      <select id="especialidad" name="especialidad" required>
+        <option value="">Elegí una</option>
+        <option>Clínica Médica</option>
+        <option>Pediatría</option>
+        <option>Cardiología</option>
+      </select>
+    </label>
+    <button type="submit" class="btn">Confirmar</button>
+  </form>
+  <p id="msg" role="status" class="ok" hidden>¡Turno reservado localmente!</p>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <small>© 2025 Hospital San Martín — <a href="docs/consentimiento-menor.pdf" download>Consentimiento (PDF)</a></small>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/calendar.js"></script>
+</body>
+</html>
