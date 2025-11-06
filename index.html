@@ -1,62 +1,96 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hospital San Martín</title>
-  <link rel="icon" href="assets/img/favicon.png">
-  <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hospital San Martín</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.png">
 </head>
 <body>
-<header class="topbar">
-  <nav class="container nav">
-    <a class="brand" href="index.html">
-      <img src="assets/img/logo.png" alt="Logo Hospital" height="32"> Hospital San Martín
-    </a>
-    <button class="nav-toggle" aria-controls="menu" aria-expanded="false">☰</button>
-    <ul id="menu" class="menu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="servicios.html">Servicios</a></li>
-      <li><a href="turnos.html">Calendario/Turnos</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="docs/protocolo-guardia.pdf" download>Descargar PDF</a></li>
-    </ul>
-  </nav>
+<header id="header">
+  <div class="container">
+    <h1>Hospital San Martín</h1>
+    <nav>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#equipo">Equipo Médico</a></li>
+        <li><a href="#turnos">Turnos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
-  
-<section class="hero">
-  <h1>Atención integral, 24/7</h1>
-  <p>Turnos, estudios y guardias con profesionales certificados.</p>
-  <a class="btn" href="turnos.html">Ver calendario</a>
-  <a class="btn btn-outline" href="docs/protocolo-guardia.pdf" download>Protocolos (PDF)</a>
-</section>
-
-<section class="grid-3">
-  <article>
-    <h2>Guardia</h2>
-    <p>Emergencias 24 horas.</p>
-  </article>
-  <article>
-    <h2>Especialidades</h2>
-    <p>Clínica, Pediatría, Ginecología, Cardiología y más.</p>
-  </article>
-  <article>
-    <h2>Estudios</h2>
-    <p>Laboratorio, Rayos, Ecografías, Tomografías.</p>
-  </article>
-</section>
-
-</main>
-
-<footer class="footer">
+<section id="hero">
   <div class="container">
-    <small>© 2025 Hospital San Martín — <a href="docs/consentimiento-menor.pdf" download>Consentimiento (PDF)</a></small>
+    <h2>Atención médica de calidad al alcance de todos</h2>
+    <p>Comprometidos con tu salud y bienestar.</p>
+    <a href="#turnos" class="btn">Reservar turno</a>
+  </div>
+</section>
+
+<section id="nosotros" class="section">
+  <div class="container">
+    <h2>Sobre Nosotros</h2>
+    <p>El Hospital San Martín brinda servicios de salud integrales, con profesionales altamente calificados y tecnología de punta, priorizando la atención humana y personalizada.</p>
+  </div>
+</section>
+
+<section id="servicios" class="section bg-light">
+  <div class="container">
+    <h2>Nuestros Servicios</h2>
+    <div class="cards">
+      <div class="card"><img src="assets/img/serv1.svg" alt="Emergencias"><h3>Emergencias 24h</h3><p>Atención inmediata en guardias equipadas.</p></div>
+      <div class="card"><img src="assets/img/serv2.svg" alt="Consultas"><h3>Consultas Médicas</h3><p>Atención en múltiples especialidades médicas.</p></div>
+      <div class="card"><img src="assets/img/serv3.svg" alt="Laboratorio"><h3>Laboratorio</h3><p>Análisis clínicos y diagnósticos precisos.</p></div>
+      <div class="card"><img src="assets/img/serv4.svg" alt="Imagenología"><h3>Imagenología</h3><p>Ecografías, radiografías y tomografías.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="equipo" class="section">
+  <div class="container">
+    <h2>Equipo Médico</h2>
+    <div class="team">
+      <div class="member"><img src="assets/img/doctor1.jpg" alt="Dr. Juan Pérez"><h4>Dr. Juan Pérez</h4><p>Cardiólogo</p></div>
+      <div class="member"><img src="assets/img/doctor2.jpg" alt="Dra. Ana López"><h4>Dra. Ana López</h4><p>Pediatra</p></div>
+      <div class="member"><img src="assets/img/doctor3.jpg" alt="Dr. Carlos Gómez"><h4>Dr. Carlos Gómez</h4><p>Clínico General</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="turnos" class="section bg-light">
+  <div class="container">
+    <h2>Reserva de Turnos</h2>
+    <iframe src="https://calendar.google.com/calendar/embed?src=es.py%23holiday%40group.v.calendar.google.com&ctz=America%2FAsuncion" style="border:0" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+    <form class="form" action="mailto:info@hospitalsm.com" method="post" enctype="text/plain">
+      <label>Nombre <input type="text" name="nombre" required></label>
+      <label>Email <input type="email" name="email" required></label>
+      <label>Especialidad <select name="especialidad"><option>Clínica Médica</option><option>Cardiología</option><option>Pediatría</option></select></label>
+      <label>Fecha <input type="date" name="fecha" required></label>
+      <button type="submit" class="btn">Solicitar turno</button>
+    </form>
+  </div>
+</section>
+
+<section id="contacto" class="section">
+  <div class="container">
+    <h2>Contacto</h2>
+    <p>📍 Av. San Martín 123, Asunción - Paraguay</p>
+    <p>📧 info@hospitalsm.com | ☎️ (021) 555-789</p>
+    <iframe src="https://www.google.com/maps?q=asuncion+paraguay&output=embed" width="100%" height="300" style="border:0;"></iframe>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <p>© 2025 Hospital San Martín — Todos los derechos reservados.</p>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
-
+<script src="assets/js/script.js"></script>
 </body>
 </html>
